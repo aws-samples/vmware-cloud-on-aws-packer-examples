@@ -192,6 +192,14 @@ Of note, the prerequisites and default variable values in the example [definitio
 * `ubuntu-server-legacy`: [`debian-installer` preseed documentation][preseed]
 * `windows-server`: [Unattended Windows Setup][unattend]
 
+## Security
+
+See [CONTRIBUTING][contributing] for more information.
+
+## License
+
+This library is licensed under the MIT-0 License. See the LICENSE file.
+
 [adk]: https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install
 [admin]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-93B962A7-93FA-4E96-B68F-AE66D3D6C663.html#GUID-93B962A7-93FA-4E96-B68F-AE66D3D6C663__dt_40CE5E4F5E05404DB96CF4031A471F94
 [administrator_password]: https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup-useraccounts-administratorpassword-value
@@ -203,6 +211,7 @@ Of note, the prerequisites and default variable values in the example [definitio
 [cloud_init_vmware_guestinfo]: https://github.com/vmware/cloud-init-vmware-guestinfo/
 [cluster]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-487C09CE-8BE2-4B89-BA30-0E4F7E3C66F7.html
 [content_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html
+[contributing]: CONTRIBUTING.md#security-issue-notifications
 [datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-057D6054-0A51-4023-B90A-D737DB0426F4.html
 [debug]: https://www.packer.io/docs/debugging
 [definition_files]: https://en.wikipedia.org/wiki/Infrastructure_as_code
