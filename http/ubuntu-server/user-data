@@ -1,0 +1,61 @@
+#cloud-config
+autoinstall:
+  version: 1
+  early-commands:
+    # Stop SSH to prevent Packer from connecting too early
+    - sudo systemctl stop ssh
+  locale: en_US
+  keyboard:
+    layout: en
+    variant: us
+  storage:
+    layout:
+      name: direct
+  identity:
+    hostname: ubuntu-server
+    username: ubuntu
+# https://cloudinit.readthedocs.io/en/latest/topics/examples.html#including-users-and-groups
+#   passwd: The hash -- not the password itself -- of the password you want
+#           to use for this user. You can generate a safe hash via:
+#               mkpasswd --method=SHA-512 --rounds=4096
+#           (the above command would create from stdin an SHA-512 password hash
+#           with 4096 salt rounds)
+#
+#           Please note: while the use of a hashed password is better than
+#               plain text, the use of this feature is not ideal. Also,
+#               using a high number of salting rounds will help, but it should
+#               not be relied upon.
+#
+#               To highlight this risk, running John the Ripper against the
+#               example hash above, with a readily available wordlist, revealed
+#               the true password in 12 seconds on a i7-2620QM.
+#
+#               In other words, this feature is a potential security risk and is
+#               provided for your convenience only. If you do not fully trust the
+#               medium over which your cloud-config will be transmitted, then you
+#               should use SSH authentication only.
+#
+#               You have thus been warned.
+    password: <insert password hash here>
+  ssh:
+    install-server: true
+    allow-pw: true
+  packages:
+    - cloud-init
+    - curl
+    - net-tools
+    - open-vm-tools
+    - openssh-server
+    # AWS CLI dependency
+    - python3-pip
+    # AWS CLI dependency
+    - unzip
+  user-data:
+    package_update: true
+    package_upgrade: true
+    package_reboot_if_required: true
+  late-commands:
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/ubuntu
+    - curtin in-target --target=/target -- apt-get update
+    - curtin in-target --target=/target -- apt-get upgrade --yes
