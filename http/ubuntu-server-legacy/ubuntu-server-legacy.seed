@@ -1,0 +1,72 @@
+# https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-partman
+# Partition the first SCSI disk with a direct layout
+d-i partman-auto/disk string /dev/sda
+d-i partman-auto/method string regular
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+# https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-account
+# Skip creation of a root account
+d-i passwd/root-login boolean false
+
+# Create a user account
+d-i passwd/user-fullname string ubuntu
+d-i passwd/username string ubuntu
+#   # https://cloudinit.readthedocs.io/en/latest/topics/examples.html#including-users-and-groups
+#   passwd: The hash -- not the password itself -- of the password you want
+#           to use for this user. You can generate a safe hash via:
+#               mkpasswd --method=SHA-512 --rounds=4096
+#           (the above command would create from stdin an SHA-512 password hash
+#           with 4096 salt rounds)
+#
+#           Please note: while the use of a hashed password is better than
+#               plain text, the use of this feature is not ideal. Also,
+#               using a high number of salting rounds will help, but it should
+#               not be relied upon.
+#
+#               To highlight this risk, running John the Ripper against the
+#               example hash above, with a readily available wordlist, revealed
+#               the true password in 12 seconds on a i7-2620QM.
+#
+#               In other words, this feature is a potential security risk and is
+#               provided for your convenience only. If you do not fully trust the
+#               medium over which your cloud-config will be transmitted, then you
+#               should use SSH authentication only.
+#
+#               You have thus been warned.
+d-i passwd/user-password-crypted password <insert password hash here>
+
+# https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-pkgsel
+# Individual additional packages to install
+d-i pkgsel/include string curl net-tools open-vm-tools openssh-server python3-pip unzip
+
+# Whether to upgrade packages after debootstrap.
+# Allowed values: none, safe-upgrade, full-upgrade
+d-i pkgsel/upgrade select safe-upgrade
+
+# Policy for applying updates. May be "none" (no automatic updates),
+# "unattended-upgrades" (install security updates automatically), or
+# "landscape" (manage system with Landscape).
+d-i pkgsel/update-policy select unattended-upgrades
+
+# https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-bootloader
+# This is fairly safe to set, it makes grub install automatically to the MBR
+# if no other operating system is detected on the machine.
+d-i grub-installer/only_debian boolean true
+
+# https://www.debian.org/releases/jessie/amd64/apbs05.html.en#preseed-hooks
+# This command is run just before the install finishes, but when there is
+# still a usable /target directory. You can chroot to /target and use it
+# directly, or use the apt-install and in-target commands to easily install
+# packages and run commands in the target system.
+d-i preseed/late_command string \
+    echo 'ubuntu ALL=(ALL) NOPASSWD: ALL' > /target/etc/sudoers.d/ubuntu ; \
+    in-target chmod 440 /etc/sudoers.d/ubuntu ; \
+    in-target apt-get update ; \
+    in-target apt-get upgrade --yes ;
+
+# https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-finish
+# Avoid that last message about the install being complete.
+d-i finish-install/reboot_in_progress note
