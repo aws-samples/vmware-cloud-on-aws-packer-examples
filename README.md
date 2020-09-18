@@ -211,7 +211,7 @@ This library is licensed under the MIT-0 License. See the LICENSE file.
 [cloud_init_vmware_guestinfo]: https://github.com/vmware/cloud-init-vmware-guestinfo/
 [cluster]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-487C09CE-8BE2-4B89-BA30-0E4F7E3C66F7.html
 [content_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html
-[contributing]: CONTRIBUTING.md#security-issue-notifications
+[contributing]: https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/blob/master/CONTRIBUTING.md
 [datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-057D6054-0A51-4023-B90A-D737DB0426F4.html
 [debug]: https://www.packer.io/docs/debugging
 [definition_files]: https://en.wikipedia.org/wiki/Infrastructure_as_code
