@@ -1,0 +1,957 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Example HashiCorp Packer templates for VMware Cloud on AWS.">
+      
+      
+        <link rel="canonical" href="https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples/">
+      
+      
+        <meta name="author" content="Amazon Web Services, Inc.">
+      
+      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>VMware Cloud on AWS Packer examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ffa724">
+      
+    
+    
+    
+      
+    
+    
+      <link rel="manifest" href="manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vmware-cloud-on-aws-packer-examples" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples/" title="VMware Cloud on AWS Packer examples" class="md-header-nav__button md-logo" aria-label="VMware Cloud on AWS Packer examples">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            VMware Cloud on AWS Packer examples
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-sync-routes
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples/" title="VMware Cloud on AWS Packer examples" class="md-nav__button md-logo" aria-label="VMware Cloud on AWS Packer examples">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z"/></svg>
+
+    </a>
+    VMware Cloud on AWS Packer examples
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-sync-routes
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+      Home
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#considerations" class="md-nav__link">
+    Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-the-ubuntu-server-vm-template" class="md-nav__link">
+    Considerations for the ubuntu-server VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-the-windows-server-vm-template" class="md-nav__link">
+    Considerations for the windows-server VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vmware-vsphere-environment" class="md-nav__link">
+    VMware vSphere environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-for-linux-vm-templates" class="md-nav__link">
+    Prerequisites for Linux VM templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-for-windows-vm-templates" class="md-nav__link">
+    Prerequisites for Windows VM templates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-preparation" class="md-nav__link">
+    Build preparation
+  </a>
+  
+    <nav class="md-nav" aria-label="Build preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-ubuntu-server-vm-template" class="md-nav__link">
+    Preparing to build the ubuntu-server VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-ubuntu-server-legacy-vm-template" class="md-nav__link">
+    Preparing to build the ubuntu-server-legacy VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-windows-server-vm-template" class="md-nav__link">
+    Preparing to build the windows-server VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-your-vm-template" class="md-nav__link">
+    Build your VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      About
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="About" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="about/code_of_conduct/" title="Code of conduct" class="md-nav__link">
+      Code of conduct
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="about/contributing/" title="Contributing" class="md-nav__link">
+      Contributing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="about/license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#considerations" class="md-nav__link">
+    Considerations
+  </a>
+  
+    <nav class="md-nav" aria-label="Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-the-ubuntu-server-vm-template" class="md-nav__link">
+    Considerations for the ubuntu-server VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#considerations-for-the-windows-server-vm-template" class="md-nav__link">
+    Considerations for the windows-server VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vmware-vsphere-environment" class="md-nav__link">
+    VMware vSphere environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-for-linux-vm-templates" class="md-nav__link">
+    Prerequisites for Linux VM templates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites-for-windows-vm-templates" class="md-nav__link">
+    Prerequisites for Windows VM templates
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting started">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-preparation" class="md-nav__link">
+    Build preparation
+  </a>
+  
+    <nav class="md-nav" aria-label="Build preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-ubuntu-server-vm-template" class="md-nav__link">
+    Preparing to build the ubuntu-server VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-ubuntu-server-legacy-vm-template" class="md-nav__link">
+    Preparing to build the ubuntu-server-legacy VM template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-to-build-the-windows-server-vm-template" class="md-nav__link">
+    Preparing to build the windows-server VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-your-vm-template" class="md-nav__link">
+    Build your VM template
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    Troubleshooting
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next steps
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    Security
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/blob/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="vmware-cloud-on-aws-packer-examples">VMware Cloud on AWS Packer examples<a class="headerlink" href="#vmware-cloud-on-aws-packer-examples" title="Permanent link">&para;</a></h1>
+<p>This repository contains examples to help you get started with automating the creation of virtual machine (VM) templates in a <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> (or <a href="https://docs.vmware.com/en/VMware-vSphere/index.html">vSphere</a> cluster) with <a href="https://www.hashicorp.com/">HashiCorp</a> <a href="https://packer.io/">Packer</a>. Each example leverages the <a href="https://www.packer.io/docs/builders/vmware/vsphere-iso"><code>vsphere-iso</code></a> builder and includes the high performance <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-AF9E24A8-2CFA-447B-AC83-35D563119667.html#GUID-AF9E24A8-2CFA-447B-AC83-35D563119667__DT_6E112EF49664477DBC1F1F136505CAEF">vmxnet3 network adapter</a> and <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-7A595885-3EA5-4F18-A6E7-5952BFC341CC.html">VMware Paravirtual SCSI controller</a> (since <a href="https://github.com/hashicorp/packer/issues/9880">NVMe controller support has not been released yet</a> for the <code>vsphere-iso</code> builder).</p>
+<p>Of note, the prerequisites and default variable values in the example <a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">definition files</a> are oriented to a <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a>, but these examples should also be usable in most VMware vSphere environments with little to no modifications required.</p>
+<h2 id="considerations">Considerations<a class="headerlink" href="#considerations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The example definition files provide the minimum necessary configuration for demonstration purposes. These VM templates are not hardened or otherwise intended for production purposes as-is. Building production-grade VM templates is possible, but out of scope for this project.</li>
+<li>Since these are examples, the host-based firewall is disabled and unconfigured. Additionally, since the intended use case is <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a>, the expectation is that the NSX-T <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.networking-security/GUID-A5114A98-C885-4244-809B-151068D6A7D7.html">gateway</a> and <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.networking-security/GUID-13A1EBFF-D793-45EE-8927-99684EF99028.html">distributed firewalls</a> would be used instead.</li>
+<li>A timestamp is appended to the VM template name so that you know exactly when it was built, and to prevent name collisions for subsequent builds.</li>
+<li>The AWS CLI is installed to provide an example of installing a package during the <a href="https://www.packer.io/docs/provisioners"><code>provisioners</code></a> phase, but it's not necessary.</li>
+</ul>
+<h3 id="considerations-for-the-ubuntu-server-vm-template">Considerations for the <code>ubuntu-server</code> VM template<a class="headerlink" href="#considerations-for-the-ubuntu-server-vm-template" title="Permanent link">&para;</a></h3>
+<ul>
+<li>As of 2020-09-04, Canonical's new automated Ubuntu server installation system that leverages <a href="https://cloudinit.readthedocs.io/en/latest/"><code>cloud-init</code></a> configuration, <a href="https://ubuntu.com/server/docs/install/autoinstall">Subiquity</a>, is not interoperable with VMware's <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html">guest customization feature</a>. VMware has an existing <a href="https://github.com/vmware/cloud-init-vmware-guestinfo/">open source project</a> for providing interoperability with <code>cloud-init</code>, but its currently incompatible with the Subiquity implementation and this issue is being tracked in <a href="https://github.com/vmware/cloud-init-vmware-guestinfo/issues/50">issue #50</a>. If guest customization is a requirement for your environment, use the <code>ubuntu-server-legacy</code> template instead, which leverages the legacy <code>debian-installer</code> preseeding system.</li>
+<li>As of 2020-09-04, one oddity of the Ubuntu 20.04.1 version of Subiquity is that the <code>nocloud-net</code> datasource must be used in the <code>boot_command</code> when providing the <code>user-data</code> and <code>meta-data</code> files via virtual floppy disk. This is odd because the <code>nocloud</code> datasource should be used when these files are local, and the <code>nocloud-net</code> datasource should be used when they're remote. One Packer community discussion about this can be found <a href="https://github.com/hashicorp/packer/issues/9115">here</a>.</li>
+</ul>
+<h3 id="considerations-for-the-windows-server-vm-template">Considerations for the <code>windows-server</code> VM template<a class="headerlink" href="#considerations-for-the-windows-server-vm-template" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation">Sysprep (generalize)</a> is not run at the end of the build because the expectation is that the security identity (SID) will be reset via the <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-CAEB6A70-D1CF-446E-BC64-EC42CDB47117.html">guest customization specification</a> created in the prerequisites below.</li>
+<li><a href="https://chocolatey.org/why-chocolatey">Chocolatey</a> is installed for programmatically installing software packages, but its not necessary.</li>
+<li>The <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse#installing-openssh-with-powershell">OpenSSH Server</a> feature is installed as a remote management option for your VMs, but this isn't necessary either.</li>
+</ul>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="vmware-vsphere-environment">VMware vSphere environment<a class="headerlink" href="#vmware-vsphere-environment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> (or a <a href="https://docs.vmware.com/en/VMware-vSphere/index.html">vSphere</a> <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-487C09CE-8BE2-4B89-BA30-0E4F7E3C66F7.html">cluster</a>)</li>
+<li>A <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.networking-security/GUID-267DEADB-BD01-46B7-82D5-B9AA210CA9EE.html">network segment</a> (or <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.networking.doc/GUID-2B11DBB8-CB3C-4AFF-8885-EFEA0FC562F4.html">port group</a>) with <a href="https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol">DHCP</a> and internet connectivity</li>
+<li>Note: If specific destinations and ports are needed for building outbound firewall policy, please refer to the definition files as these may change over time, and the definition files will always be authoritative.</li>
+<li><a href="https://learn.hashicorp.com/tutorials/packer/getting-started-install">Packer installed</a> in a location with the following connectivity:</li>
+<li>HTTPS (443/tcp) connectivity to <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vcenter.install.doc/GUID-78933728-7F02-43AF-ABD8-0BDCE10418A6.html">vCenter</a></li>
+<li>SSH (22/tcp) connectivity to the target network segment listed above for communicating with the VM during the <a href="https://www.packer.io/docs/provisioners"><code>provisioners</code></a> phase</li>
+<li>WinRM-HTTPS (5986/tcp) connectivity to the target network segment listed above for communicating with Windows VMs during the <a href="https://www.packer.io/docs/provisioners"><code>provisioners</code></a> phase</li>
+<li>Sufficient storage capacity for storing the VM guest operating sytem installation <a href="https://en.wikipedia.org/wiki/ISO_image">ISO image</a> files, as well as the VM templates' virtual hard disks and other files in your <a href="https://docs.vmware.com/en/VMware-vSAN/index.html">vSAN</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vsphere.vmc-aws-manage-data-center-vms.doc/GUID-3F81EF2B-54A1-49C3-A47B-6C5F6E2E9BEC.html#GUID-3F81EF2B-54A1-49C3-A47B-6C5F6E2E9BEC__section_1719B06D81414505A7AE61D76E03B419">WorkloadDatastore</a> (or a writeable <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-057D6054-0A51-4023-B90A-D737DB0426F4.html">datastore</a>)</li>
+<li>Note: As of 2020-08-24, the <a href="https://www.packer.io/docs/builders/vmware/vsphere-iso"><code>vsphere-iso</code></a> builder supports <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html">content libraries</a> as a source location for ISO files. This feature isn't well-documented yet, but was released as part of <a href="https://github.com/hashicorp/packer/blob/master/CHANGELOG.md#162-august-28-2020">v1.6.2</a>.</li>
+<li>vCenter credentials with <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vsphere.vmc-aws-manage-data-center-vms.doc/GUID-DFB3C048-5728-4DE9-9380-7240748875C3.html">cloudadmin</a> (or <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-93B962A7-93FA-4E96-B68F-AE66D3D6C663.html#GUID-93B962A7-93FA-4E96-B68F-AE66D3D6C663__dt_40CE5E4F5E05404DB96CF4031A471F94">administrative</a>) rights</li>
+<li>Custom fine-grained permissions are possible, but beyond the scope of this project</li>
+</ul>
+<h3 id="prerequisites-for-linux-vm-templates">Prerequisites for Linux VM templates<a class="headerlink" href="#prerequisites-for-linux-vm-templates" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-9A5093A5-C54F-4502-941B-3F9C0F573A39.html">Create a Linux guest customization specification</a>.</li>
+</ul>
+<h3 id="prerequisites-for-windows-vm-templates">Prerequisites for Windows VM templates<a class="headerlink" href="#prerequisites-for-windows-vm-templates" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-CAEB6A70-D1CF-446E-BC64-EC42CDB47117.html">Create a Windows guest customization specification</a> that generates a new security identity (SID).</li>
+<li>On a Windows server or client where you have administrative rights...</li>
+<li>Download the latest <a href="https://docs.microsoft.com/en-us/windows-hardware/get-started/adk-install">Windows Assessment and Deployment Kit (Windows ADK)</a>.<ul>
+<li>Note: Only the <code>Deployment tools</code> feature that includes the Windows System Image Manager (SIM) is necessary.</li>
+</ul>
+</li>
+</ul>
+<h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<h3 id="build-preparation">Build preparation<a class="headerlink" href="#build-preparation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Download the ISO image files for the VM template(s) that you want to build:</li>
+<li>Examples:<ul>
+<li><code>ubuntu-server</code><ul>
+<li><a href="https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso">Ubuntu Server 20.04.1 LTS</a></li>
+</ul>
+</li>
+<li><code>ubuntu-server-legacy</code><ul>
+<li><a href="http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso">Ubuntu Server 20.04.1 LTS (legacy Debian installer)</a></li>
+</ul>
+</li>
+<li><code>windows-server</code><ul>
+<li><a href="https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso">Windows Server 2019</a></li>
+<li><a href="https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso">VMware Tools 11.1.0</a> (or <a href="https://packages.vmware.com/tools/esx/">whichever version is appropriate for your vSphere cluster</a>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-139C3002-16FA-4519-B702-21315E39C55C.html">Upload the VM guest operating system installation ISO files</a> to a directory/folder named <code>ISO</code> in the target datastore</li>
+<li>Create one or more <a href="https://www.packer.io/docs/from-1.5/variables#variable-definitions-pkrvars-hcl-files"><code>.pkrvars.hcl</code> variable definition files</a> for defining values for variables that you want to persist between builds</li>
+<li>
+<p>Example variable definition file for building an Ubuntu Server 18.04 LTS VM template with the <code>ubuntu-server-legacy.pkr.hcl</code> definition file:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># ./ubuntu-server-18-legacy.pkrvars.hcl</span>
+
+<span class="c"># http://cdimage.ubuntu.com/releases/18.04/release/ubuntu-18.04.5-server-amd64.iso</span>
+<span class="na">iso_filename</span> <span class="o">=</span> <span class="s">&quot;ubuntu-18.04.5-server-amd64.iso&quot;</span>
+<span class="na">vm_name</span> <span class="o">=</span> <span class="s">&quot;template-ubuntu-server-18.04-amd64-legacy&quot;</span>
+</code></pre></div>
+
+</li>
+</ul>
+<h4 id="preparing-to-build-the-ubuntu-server-vm-template">Preparing to build the <code>ubuntu-server</code> VM template<a class="headerlink" href="#preparing-to-build-the-ubuntu-server-vm-template" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.
+├── http/
+│   ├── scripts/
+│   │   └── linux/
+│   │       └── awscli.sh
+│   └── ubuntu-server/
+│       ├── meta-data
+│       └── user-data
+└── ubuntu-server.pkr.hcl
+</code></pre></div>
+
+<ul>
+<li>Note: The <code>./http/ubuntu-server/user-data</code> and <code>./http/ubuntu-server/meta-data</code> are the <a href="https://cloudinit.readthedocs.io/en/latest/"><code>cloud-init</code></a> configuration files that are used to provide all of the input necessary to build the VM template without manual intervention, and <code>./http/ubuntu-server/meta-data</code> file is supposed to be empty.</li>
+<li><a href="http://manpages.ubuntu.com/manpages/focal/man1/mkpasswd.1.html">Create a password hash with mkpasswd</a></li>
+<li>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>$ mkpasswd --method=SHA-512 --rounds=4096
+Password:
+[password hash]
+</code></pre></div>
+
+</li>
+<li>
+<p>In the <code>./http/ubuntu-server/user-data</code> file, set the password for the <code>ubuntu</code> user account:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># ./http/ubuntu-server/user-data</span>
+
+<span class="nt">autoinstall</span><span class="p">:</span>
+  <span class="nt">identity</span><span class="p">:</span>
+    <span class="nt">password</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">password hash</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+
+<h4 id="preparing-to-build-the-ubuntu-server-legacy-vm-template">Preparing to build the <code>ubuntu-server-legacy</code> VM template<a class="headerlink" href="#preparing-to-build-the-ubuntu-server-legacy-vm-template" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.
+├── http/
+│   ├── scripts/
+│   │   └── linux/
+│   │       └── awscli.sh
+│   └── ubuntu-server-legacy/
+│       └── ubuntu-server-legacy.seed
+└── ubuntu-server-legacy.pkr.hcl
+</code></pre></div>
+
+<ul>
+<li>Note: The <code>./http/ubuntu-server-legacy/ubuntu-server-legacy.seed</code> file is the <a href="https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html"><code>debian-installer</code> preseed configuration file</a> that is used to provide all of the input necessary to build the VM template without manual intervention.</li>
+<li><a href="http://manpages.ubuntu.com/manpages/focal/man1/mkpasswd.1.html">Create a password hash with mkpasswd</a></li>
+<li>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>$ mkpasswd --method=SHA-512 --rounds=4096
+Password:
+[password hash]
+</code></pre></div>
+
+</li>
+<li>
+<p>In the <code>./http/ubuntu-server-legacy/ubuntu-server-legacy.seed</code> file, set the password for the <code>ubuntu</code> user account:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c"># ./http/ubuntu-server-legacy/ubuntu-server-legacy.seed</span>
+
+<span class="err">d-i</span> <span class="err">passwd/user-password-crypted</span> <span class="err">password</span> <span class="err">[password</span> <span class="err">hash]</span>
+</code></pre></div>
+
+<h4 id="preparing-to-build-the-windows-server-vm-template">Preparing to build the <code>windows-server</code> VM template<a class="headerlink" href="#preparing-to-build-the-windows-server-vm-template" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code>.
+├── http/
+│   ├── scripts/
+│   │   └── windows/
+│   │       ├── Initialize-WinRM.ps1
+│   │       ├── Install-AWSCLI.ps1
+│   │       ├── Install-Chocolatey.ps1
+│   │       ├── Install-OpenSSHServer.ps1
+│   │       └── Reset-AutoLogonCount.ps1
+│   └── windows-server/
+│       └── 2019/
+│           ├── autounattend.xml
+│           └── install_Windows Server 2019 SERVERDATACENTER.clg
+└── windows-server.pkr.hcl
+</code></pre></div>
+
+<ul>
+<li>Note: The example answer file (<code>./http/scripts/windows-server/autounattend.xml</code>) and catalog file (<code>./http/scripts/windows-server/install_Windows Server 2019 SERVERDATACENTER.clg</code>) are configured for a silent install of Windows Server 2019 Datacenter Evaluation Edition that also installs VMware Tools and temporarily enables WinRM (for the Packer provisioner phase). When you want to programmatically build other types of Windows VMs, please checkout the <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/">Unattended Windows Setup Reference</a>.</li>
+<li>In Window System Image Manager, go to <code>File &gt; Open Select Windows Image...</code> and open <code>./http/windows-server/2019/install_Windows Server 2019 SERVERDATACENTER.clg</code></li>
+<li>Then go to <code>File &gt; Open Answer File...</code> and open the example answer file: <code>./http/windows-server/2019/autounattend.xml</code></li>
+<li>In the Windows Image pane, expand <code>amd64_Microsoft-Windows-Shell-Setup_10.0.17763.1_neutral &gt; UserAccounts</code>, then right-click <code>AdministratorPassword</code> and select <code>Add Setting to Pass 7 oobeSystem</code>, and then <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup-useraccounts-administratorpassword-value">set the password</a></li>
+<li><code>Value</code> = [desired password]<ul>
+<li>Note: By default, the passwords will be masked when saved via a hash.</li>
+</ul>
+</li>
+<li>In the Windows Image pane, expand <code>amd64_Microsoft-Windows-Shell-Setup_10.0.17763.1_neutral &gt; AutoLogon</code>, then right-click <code>Password</code> and select <code>Add Setting to Pass 7 oobeSystem</code>, and then <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup-autologon-password-value">set the password</a></li>
+<li><code>Value</code> = [desired password]</li>
+<li>Then go to <code>File &gt; Save Answer File</code> to save the changes</li>
+</ul>
+<h3 id="build-your-vm-template">Build your VM template<a class="headerlink" href="#build-your-vm-template" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Run <code>packer build</code> with the appropriate parameters</li>
+<li>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>packer build -var-file<span class="o">=</span><span class="s1">&#39;./sddc.pkrvars.hcl&#39;</span> -var-file<span class="o">=</span><span class="s1">&#39;./ubuntu.pkrvars.hcl&#39;</span> <span class="s1">&#39;./ubuntu-server.pkr.hcl&#39;</span>
+</code></pre></div>
+
+</li>
+<li>
+<p>A few minutes later, you'll have a fresh, new VM template.</p>
+</li>
+<li>Voila! You're done.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Please see <a href="https://www.packer.io/docs/debugging">Debugging Packer Builds</a>.</li>
+</ul>
+<h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-8F7F6533-C7DB-4800-A8D2-DF7016016A80.html">Deploy a VM from your new VM template(s)</a> and apply your guest customization specification that you created in the prerequisites (except when building with the <code>ubuntu-server</code> definition files due to the guest customization issue mentioned above)</li>
+<li>Customize the definition files and build new VM templates.</li>
+<li>Start building all of your VM templates programmatically!</li>
+</ul>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>ubuntu-server</code>: <a href="https://cloudinit.readthedocs.io/en/latest/"><code>cloud-init</code> documentation</a></li>
+<li><code>ubuntu-server-legacy</code>: <a href="https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html"><code>debian-installer</code> preseed documentation</a></li>
+<li><code>windows-server</code>: <a href="https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/">Unattended Windows Setup</a></li>
+</ul>
+<h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
+<p>See <a href="https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/blob/master/CONTRIBUTING.md">CONTRIBUTING</a> for more information.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>This library is licensed under the MIT-0 License. See the LICENSE file.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="about/code_of_conduct/" title="Code of conduct" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Code of conduct
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://aws.amazon.com/vmware/" target="_blank" rel="noopener" title="aws.amazon.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/AWSOpen" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://www.reddit.com/r/aws/" target="_blank" rel="noopener" title="www.reddit.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M440.3 203.5c-15 0-28.2 6.2-37.9 15.9-35.7-24.7-83.8-40.6-137.1-42.3L293 52.3l88.2 19.8c0 21.6 17.6 39.2 39.2 39.2 22 0 39.7-18.1 39.7-39.7s-17.6-39.7-39.7-39.7c-15.4 0-28.7 9.3-35.3 22l-97.4-21.6c-4.9-1.3-9.7 2.2-11 7.1L246.3 177c-52.9 2.2-100.5 18.1-136.3 42.8-9.7-10.1-23.4-16.3-38.4-16.3-55.6 0-73.8 74.6-22.9 100.1-1.8 7.9-2.6 16.3-2.6 24.7 0 83.8 94.4 151.7 210.3 151.7 116.4 0 210.8-67.9 210.8-151.7 0-8.4-.9-17.2-3.1-25.1 49.9-25.6 31.5-99.7-23.8-99.7zM129.4 308.9c0-22 17.6-39.7 39.7-39.7 21.6 0 39.2 17.6 39.2 39.7 0 21.6-17.6 39.2-39.2 39.2-22 .1-39.7-17.6-39.7-39.2zm214.3 93.5c-36.4 36.4-139.1 36.4-175.5 0-4-3.5-4-9.7 0-13.7 3.5-3.5 9.7-3.5 13.2 0 27.8 28.5 120 29 149 0 3.5-3.5 9.7-3.5 13.2 0 4.1 4 4.1 10.2.1 13.7zm-.8-54.2c-21.6 0-39.2-17.6-39.2-39.2 0-22 17.6-39.7 39.2-39.7 22 0 39.7 17.6 39.7 39.7-.1 21.5-17.7 39.2-39.7 39.2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: [],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

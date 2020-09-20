@@ -1,0 +1,11 @@
+{
+  "name": "VMware Cloud on AWS Packer examples",
+  "author": "Amazon Web Services, Inc.",
+  "description": "Example HashiCorp Packer templates for VMware Cloud on AWS",
+  "lang": "en-US",
+  "dir": "ltr",
+  "start_url": "https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples",
+  "display": "browser",
+  "theme_color": "#232f3e",
+  "background_color": "#ffffff"
+}
