@@ -1,0 +1,87 @@
+# https://www.mkdocs.org/user-guide/configuration/
+
+# Project information
+site_name: 'VMware Cloud on AWS Packer examples'
+site_description: 'Example HashiCorp Packer templates for VMware Cloud on AWS.'
+site_author: 'Amazon Web Services, Inc.'
+site_url: 'https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples/'
+
+# Repository
+repo_name: 'aws-sync-routes'
+repo_url: 'https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples'
+remote_branch: 'gh-pages'
+edit_uri: 'blob/master/docs/'
+
+# Copyright
+copyright: 'Copyright 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# Configuration
+theme:
+  name: 'material'
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Theme
+  language: 'en'
+  # features:
+  #   tabs: false
+  palette:
+    scheme: 'default'
+    primary: 'indigo'
+    accent: 'orange'
+  font: false
+  icon:
+    logo: 'material/home'
+    repo: 'fontawesome/brands/github'
+
+# Customization
+extra:
+  manifest: 'manifest.webmanifest'
+  social:
+    - icon: 'fontawesome/solid/globe'
+      link: 'https://aws.amazon.com/vmware/'
+    - icon: 'fontawesome/brands/github-alt'
+      link: 'https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples/'
+    - icon: 'fontawesome/brands/twitter'
+      link: 'https://twitter.com/AWSOpen'
+    - icon: 'fontawesome/brands/reddit-alien'
+      link: 'https://www.reddit.com/r/aws/'
+
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: 'index.md'
+  - About:
+    - Code of conduct: 'about/code_of_conduct.md'
+    - Contributing: 'about/contributing.md'
+    - License: 'about/license.md'

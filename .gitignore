@@ -11,3 +11,7 @@ crash.log
 # subject to change depending on the environment.
 #
 *.pkrvars.hcl
+
+# mkdocs
+/site/
+debug.log
