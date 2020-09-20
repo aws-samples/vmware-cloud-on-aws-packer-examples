@@ -38,11 +38,11 @@ Of note, the prerequisites and default variable values in the example [definitio
 * vCenter credentials with [cloudadmin][] (or [administrative][admin]) rights
   * Custom fine-grained permissions are possible, but beyond the scope of this project
 
-### For Linux VM templates
+### Prerequisites for Linux VM templates
 
 * [Create a Linux guest customization specification][guest_customization_linux].
 
-### For Windows VM templates
+### Prerequisites for Windows VM templates
 
 * [Create a Windows guest customization specification][guest_customization_windows] that generates a new security identity (SID).
 * On a Windows server or client where you have administrative rights...
