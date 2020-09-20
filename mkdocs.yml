@@ -7,7 +7,7 @@ site_author: 'Amazon Web Services, Inc.'
 site_url: 'https://aws-samples.github.io/vmware-cloud-on-aws-packer-examples/'
 
 # Repository
-repo_name: 'aws-sync-routes'
+repo_name: 'vmware-cloud-on-aws-packer-examples'
 repo_url: 'https://github.com/aws-samples/vmware-cloud-on-aws-packer-examples'
 remote_branch: 'gh-pages'
 edit_uri: 'blob/master/docs/'
