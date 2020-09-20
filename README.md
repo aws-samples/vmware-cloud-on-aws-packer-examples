@@ -55,12 +55,16 @@ Of note, the prerequisites and default variable values in the example [definitio
 
 * Download the ISO image files for the VM template(s) that you want to build:
   * Examples:
-    * [`ubuntu-server`][iso_ubuntu_server]
-    * [`ubuntu-server-legacy`][iso_ubuntu_server_legacy] (legacy Debian installer)
-    * [`windows-server`][iso_windows_server] and [VMware Tools 11.0.5][iso_vmware_tools] (or [whichever version is appropriate for your vSphere cluster][vmware_tools_download])
+    * `ubuntu-server`
+        * [Ubuntu Server 20.04.1 LTS][iso_ubuntu_server]
+    * `ubuntu-server-legacy`
+        * [Ubuntu Server 20.04.1 LTS (legacy Debian installer)][iso_ubuntu_server_legacy]
+    * `windows-server`
+        * [Windows Server 2019][iso_windows_server]
+        * [VMware Tools 11.1.0][iso_vmware_tools] (or [whichever version is appropriate for your vSphere cluster][vmware_tools_download])
 * [Upload the VM guest operating system installation ISO files][upload_file] to a directory/folder named `ISO` in the target datastore
 * Create one or more [`.pkrvars.hcl` variable definition files][pkrvars] for defining values for variables that you want to persist between builds
-  * Example variable definition file for building an Ubuntu Server 18.04 LTS VM template with the `ubuntu-server-legacy.pkr.hcl` definition file:
+* Example variable definition file for building an Ubuntu Server 18.04 LTS VM template with the `ubuntu-server-legacy.pkr.hcl` definition file:
 
     ```properties
     # ./ubuntu-server-18-legacy.pkrvars.hcl
@@ -227,7 +231,7 @@ This library is licensed under the MIT-0 License. See the LICENSE file.
 [iso]: https://en.wikipedia.org/wiki/ISO_image
 [iso_ubuntu_server]: https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
 [iso_ubuntu_server_legacy]: http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso
-[iso_vmware_tools]: https://packages.vmware.com/tools/esx/7.0/windows/VMware-tools-windows-11.0.5-15389592.iso
+[iso_vmware_tools]: https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso
 [iso_windows_server]: https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
 [issue50]: https://github.com/vmware/cloud-init-vmware-guestinfo/issues/50
 [issue9115]: https://github.com/hashicorp/packer/issues/9115
