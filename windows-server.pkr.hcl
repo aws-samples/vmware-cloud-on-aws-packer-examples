@@ -95,7 +95,7 @@ variable vcenter_server {
 variable vm_name {
   type = string
   description = "The name of the new VM template to create."
-  default = "template-windows-server-2019-amd64"
+  default = "template-windows-server-2019-dc-amd64"
 }
 
 variable vm_version {
