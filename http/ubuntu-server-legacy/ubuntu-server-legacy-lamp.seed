@@ -42,7 +42,7 @@ d-i passwd/user-password-crypted password <insert password hash here>
 tasksel tasksel/first multiselect lamp-server
 
 # Individual additional packages to install
-d-i pkgsel/include string curl net-tools nfs-common open-vm-tools openssh-server python3-pip unzip
+d-i pkgsel/include string curl net-tools nfs-common open-vm-tools openssh-server
 
 # Whether to upgrade packages after debootstrap.
 # Allowed values: none, safe-upgrade, full-upgrade

@@ -46,10 +46,6 @@ autoinstall:
     - net-tools
     - open-vm-tools
     - openssh-server
-    # AWS CLI dependency
-    - python3-pip
-    # AWS CLI dependency
-    - unzip
   user-data:
     package_update: true
     package_upgrade: true
