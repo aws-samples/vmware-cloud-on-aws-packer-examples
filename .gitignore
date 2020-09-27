@@ -11,6 +11,7 @@ crash.log
 # subject to change depending on the environment.
 #
 *.pkrvars.hcl
+!/lamp.pkrvars.hcl
 
 # mkdocs
 /site/
