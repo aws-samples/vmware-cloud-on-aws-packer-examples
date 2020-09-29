@@ -5,7 +5,7 @@ variable boot_command {
   description = "Specifies the keys to type when the virtual machine is first booted in order to start the OS installer. This command is typed after boot_wait, which gives the virtual machine some time to actually load."
   default = <<-EOF
   <enter><wait2><enter><wait><f6><esc><wait>
-   autoinstall ds=nocloud-net;
+   autoinstall ds=nocloud;
   <enter>
   EOF
 }
