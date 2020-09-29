@@ -1,6 +1,8 @@
 # https://help.ubuntu.com/lts/installation-guide/amd64/apbs04.html#preseed-partman
 # Partition the first SCSI disk with a direct layout
-d-i partman-auto/disk string /dev/sda
+# d-i partman-auto/disk string /dev/sda
+# Partition the first NVMe disk with a direct layout
+d-i partman-auto/disk string /dev/nvme0n1
 d-i partman-auto/method string regular
 d-i partman-partitioning/confirm_write_new_label boolean true
 d-i partman/choose_partition select finish

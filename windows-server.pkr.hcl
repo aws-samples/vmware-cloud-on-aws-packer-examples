@@ -25,6 +25,12 @@ variable datastore {
   default = "WorkloadDatastore"
 }
 
+variable disk_controller_type {
+  type = string
+  description = "The virtual disk controller type."
+  default = "nvme"
+}
+
 variable folder {
   type = string
   description = "The VM folder in which the VM template will be created."
@@ -134,7 +140,7 @@ source vsphere-iso windows-server {
   datacenter = var.datacenter
   datastore = var.datastore
   disk_controller_type = [
-    "pvscsi",
+    var.disk_controller_type,
   ]
   floppy_files = [
     local.answer_file_path,

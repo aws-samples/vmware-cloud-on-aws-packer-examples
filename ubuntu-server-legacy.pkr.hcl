@@ -41,6 +41,13 @@ variable datastore {
   default = "WorkloadDatastore"
 }
 
+variable disk_controller_type {
+  type = string
+  description = "The virtual disk controller type."
+  # If you want to use the "pvscsi" controller instead, make sure to change this in the preseed file too.
+  default = "nvme"
+}
+
 variable floppy_files {
   type = list(string)
   description = "The list of local files to be mounted to the VM floppy drive. At a minimum, the preseed file should be included, and the file name must match the one specified in the boot_command value."
@@ -144,7 +151,7 @@ source vsphere-iso ubuntu-server-legacy {
   datacenter = var.datacenter
   datastore = var.datastore
   disk_controller_type = [
-    "pvscsi",
+    var.disk_controller_type,
   ]
   floppy_files = var.floppy_files
   folder = var.folder

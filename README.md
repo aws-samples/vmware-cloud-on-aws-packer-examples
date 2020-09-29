@@ -1,6 +1,6 @@
 # VMware Cloud on AWS Packer examples
 
-This repository contains examples to help you get started with automating the creation of virtual machine (VM) templates in a [VMware Cloud on AWS][vmconaws] [software-defined datacenter (SDDC)][sddc] (or [vSphere][vsphere] cluster) with [HashiCorp][hashicorp] [Packer][packer]. Each example leverages the [`vsphere-iso`][vsphere_iso] builder and includes the high performance [vmxnet3 network adapter][vmxnet3] and [VMware Paravirtual SCSI controller][pvscsi] (since [NVMe controller support has not been released yet][issue9880] for the `vsphere-iso` builder).
+This repository contains examples to help you get started with automating the creation of virtual machine (VM) templates in a [VMware Cloud on AWS][vmconaws] [software-defined datacenter (SDDC)][sddc] (or [vSphere][vsphere] cluster) with [HashiCorp][hashicorp] [Packer][packer]. Each example leverages the [`vsphere-iso`][vsphere_iso] builder and includes the high performance [vmxnet3 network adapter][vmxnet3] and NVMe controller. The [VMware Paravirtual SCSI controller][pvscsi] was tested with these too though.
 
 Of note, the prerequisites and default variable values in the example [definition files][definition_files] are oriented to a [VMware Cloud on AWS][vmconaws] [software-defined datacenter (SDDC)][sddc], but these examples should also be usable in most VMware vSphere environments with little to no modifications required.
 
@@ -22,6 +22,11 @@ Of note, the prerequisites and default variable values in the example [definitio
 * The [OpenSSH Server][openssh] feature is installed as a remote management option for your VMs, but this isn't necessary either.
 
 ## Prerequisites
+
+### Packer
+
+* [Packer][packer] v1.6.3 or greater if building with the NVMe storage controllers
+  * Each Packer template was tested with Packer v1.6.2 when building with the [VMware Paravirtual SCSI controller][pvscsi].
 
 ### VMware vSphere environment
 
@@ -232,7 +237,6 @@ This library is licensed under the MIT-0 License. See the LICENSE file.
 [iso_ubuntu_server_legacy]: http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso
 [iso_vmware_tools]: https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso
 [iso_windows_server]: https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
-[issue9880]: https://github.com/hashicorp/packer/issues/9880
 [mkpasswd]: http://manpages.ubuntu.com/manpages/focal/man1/mkpasswd.1.html
 [network_segment]: https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.networking-security/GUID-267DEADB-BD01-46B7-82D5-B9AA210CA9EE.html
 [openssh]: https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse#installing-openssh-with-powershell

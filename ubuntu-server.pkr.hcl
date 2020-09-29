@@ -28,6 +28,12 @@ variable datastore {
   default = "WorkloadDatastore"
 }
 
+variable disk_controller_type {
+  type = string
+  description = "The virtual disk controller type."
+  default = "nvme"
+}
+
 variable floppy_files {
   type = list(string)
   description = "The list of local files to be mounted to the VM floppy drive. At a minimum, the cloud-init user-data and meta-data files should be included in this list."
@@ -132,7 +138,7 @@ source vsphere-iso ubuntu-server {
   datacenter = var.datacenter
   datastore = var.datastore
   disk_controller_type = [
-    "pvscsi",
+    var.disk_controller_type,
   ]
   floppy_files = var.floppy_files
   floppy_label = "cidata"
