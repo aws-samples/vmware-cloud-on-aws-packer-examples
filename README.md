@@ -13,7 +13,7 @@ Of note, the prerequisites and default variable values in the example [definitio
 
 ### Considerations for the `ubuntu-server` VM template
 
-* As of 2020-09-04, Canonical's new automated Ubuntu server installation system that leverages [`cloud-init`][cloud_init] configuration, [Subiquity][subiquity], is not interoperable with VMware's [guest customization feature][guest_customization]. VMware has an existing [open source project][cloud_init_vmware_guestinfo] for providing interoperability with `cloud-init`, but its currently incompatible with the Subiquity implementation and this issue is being tracked in [issue #50][issue50]. If guest customization is a requirement for your environment, use the `ubuntu-server-legacy` template instead, which leverages the legacy `debian-installer` preseeding system.
+* As of 2020-09-04, Canonical's new automated Ubuntu server installation system that leverages [`cloud-init`][cloud_init] configuration, [Subiquity][subiquity], is not interoperable with VMware's [guest customization feature][guest_customization]. VMware has an existing [open source project][cloud_init_vmware_guestinfo] for providing some interoperability with `cloud-init`. If guest customization is a requirement for your environment, use the `ubuntu-server-legacy` template instead, which leverages the legacy `debian-installer` preseeding system.
 
 ### Considerations for the `windows-server` VM template
 
@@ -232,7 +232,6 @@ This library is licensed under the MIT-0 License. See the LICENSE file.
 [iso_ubuntu_server_legacy]: http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso
 [iso_vmware_tools]: https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso
 [iso_windows_server]: https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
-[issue50]: https://github.com/vmware/cloud-init-vmware-guestinfo/issues/50
 [issue9880]: https://github.com/hashicorp/packer/issues/9880
 [mkpasswd]: http://manpages.ubuntu.com/manpages/focal/man1/mkpasswd.1.html
 [network_segment]: https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws.networking-security/GUID-267DEADB-BD01-46B7-82D5-B9AA210CA9EE.html
