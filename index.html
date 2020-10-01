@@ -256,6 +256,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#packer" class="md-nav__link">
+    Packer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vmware-vsphere-environment" class="md-nav__link">
     VMware vSphere environment
   </a>
@@ -498,6 +505,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#packer" class="md-nav__link">
+    Packer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#vmware-vsphere-environment" class="md-nav__link">
     VMware vSphere environment
   </a>
@@ -633,7 +647,7 @@
                 
                 
                 <h1 id="vmware-cloud-on-aws-packer-examples">VMware Cloud on AWS Packer examples<a class="headerlink" href="#vmware-cloud-on-aws-packer-examples" title="Permanent link">&para;</a></h1>
-<p>This repository contains examples to help you get started with automating the creation of virtual machine (VM) templates in a <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> (or <a href="https://docs.vmware.com/en/VMware-vSphere/index.html">vSphere</a> cluster) with <a href="https://www.hashicorp.com/">HashiCorp</a> <a href="https://packer.io/">Packer</a>. Each example leverages the <a href="https://www.packer.io/docs/builders/vmware/vsphere-iso"><code>vsphere-iso</code></a> builder and includes the high performance <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-AF9E24A8-2CFA-447B-AC83-35D563119667.html#GUID-AF9E24A8-2CFA-447B-AC83-35D563119667__DT_6E112EF49664477DBC1F1F136505CAEF">vmxnet3 network adapter</a> and <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-7A595885-3EA5-4F18-A6E7-5952BFC341CC.html">VMware Paravirtual SCSI controller</a> (since <a href="https://github.com/hashicorp/packer/issues/9880">NVMe controller support has not been released yet</a> for the <code>vsphere-iso</code> builder).</p>
+<p>This repository contains examples to help you get started with automating the creation of virtual machine (VM) templates in a <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> (or <a href="https://docs.vmware.com/en/VMware-vSphere/index.html">vSphere</a> cluster) with <a href="https://www.hashicorp.com/">HashiCorp</a> <a href="https://packer.io/">Packer</a>. Each example leverages the <a href="https://www.packer.io/docs/builders/vmware/vsphere-iso"><code>vsphere-iso</code></a> builder and includes the high performance <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-AF9E24A8-2CFA-447B-AC83-35D563119667.html#GUID-AF9E24A8-2CFA-447B-AC83-35D563119667__DT_6E112EF49664477DBC1F1F136505CAEF">vmxnet3 network adapter</a> and NVMe controller. The <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-7A595885-3EA5-4F18-A6E7-5952BFC341CC.html">VMware Paravirtual SCSI controller</a> was tested with these too though.</p>
 <p>Of note, the prerequisites and default variable values in the example <a href="https://en.wikipedia.org/wiki/Infrastructure_as_code">definition files</a> are oriented to a <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a>, but these examples should also be usable in most VMware vSphere environments with little to no modifications required.</p>
 <h2 id="considerations">Considerations<a class="headerlink" href="#considerations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -644,8 +658,7 @@
 </ul>
 <h3 id="considerations-for-the-ubuntu-server-vm-template">Considerations for the <code>ubuntu-server</code> VM template<a class="headerlink" href="#considerations-for-the-ubuntu-server-vm-template" title="Permanent link">&para;</a></h3>
 <ul>
-<li>As of 2020-09-04, Canonical's new automated Ubuntu server installation system that leverages <a href="https://cloudinit.readthedocs.io/en/latest/"><code>cloud-init</code></a> configuration, <a href="https://ubuntu.com/server/docs/install/autoinstall">Subiquity</a>, is not interoperable with VMware's <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html">guest customization feature</a>. VMware has an existing <a href="https://github.com/vmware/cloud-init-vmware-guestinfo/">open source project</a> for providing interoperability with <code>cloud-init</code>, but its currently incompatible with the Subiquity implementation and this issue is being tracked in <a href="https://github.com/vmware/cloud-init-vmware-guestinfo/issues/50">issue #50</a>. If guest customization is a requirement for your environment, use the <code>ubuntu-server-legacy</code> template instead, which leverages the legacy <code>debian-installer</code> preseeding system.</li>
-<li>As of 2020-09-04, one oddity of the Ubuntu 20.04.1 version of Subiquity is that the <code>nocloud-net</code> datasource must be used in the <code>boot_command</code> when providing the <code>user-data</code> and <code>meta-data</code> files via virtual floppy disk. This is odd because the <code>nocloud</code> datasource should be used when these files are local, and the <code>nocloud-net</code> datasource should be used when they're remote. One Packer community discussion about this can be found <a href="https://github.com/hashicorp/packer/issues/9115">here</a>.</li>
+<li>As of 2020-09-04, Canonical's new automated Ubuntu server installation system that leverages <a href="https://cloudinit.readthedocs.io/en/latest/"><code>cloud-init</code></a> configuration, <a href="https://ubuntu.com/server/docs/install/autoinstall">Subiquity</a>, is not interoperable with VMware's <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-58E346FF-83AE-42B8-BE58-253641D257BC.html">guest customization feature</a>. VMware has an existing <a href="https://github.com/vmware/cloud-init-vmware-guestinfo/">open source project</a> for providing some interoperability with <code>cloud-init</code>. If guest customization is a requirement for your environment, use the <code>ubuntu-server-legacy</code> template instead, which leverages the legacy <code>debian-installer</code> preseeding system.</li>
 </ul>
 <h3 id="considerations-for-the-windows-server-vm-template">Considerations for the <code>windows-server</code> VM template<a class="headerlink" href="#considerations-for-the-windows-server-vm-template" title="Permanent link">&para;</a></h3>
 <ul>
@@ -654,6 +667,11 @@
 <li>The <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse#installing-openssh-with-powershell">OpenSSH Server</a> feature is installed as a remote management option for your VMs, but this isn't necessary either.</li>
 </ul>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="packer">Packer<a class="headerlink" href="#packer" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://packer.io/">Packer</a> v1.6.3 or greater if building with the NVMe storage controllers</li>
+<li>Each Packer template was tested with Packer v1.6.2 when building with the <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-7A595885-3EA5-4F18-A6E7-5952BFC341CC.html">VMware Paravirtual SCSI controller</a>.</li>
+</ul>
 <h3 id="vmware-vsphere-environment">VMware vSphere environment<a class="headerlink" href="#vmware-vsphere-environment" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A <a href="https://aws.amazon.com/vmware/">VMware Cloud on AWS</a> <a href="https://docs.vmware.com/en/VMware-Cloud-on-AWS/services/com.vmware.vmc-aws-operations/GUID-A0F15ABA-C2DF-46CD-B883-A9FABD892B75.html">software-defined datacenter (SDDC)</a> (or a <a href="https://docs.vmware.com/en/VMware-vSphere/index.html">vSphere</a> <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.resmgmt.doc/GUID-487C09CE-8BE2-4B89-BA30-0E4F7E3C66F7.html">cluster</a>)</li>
