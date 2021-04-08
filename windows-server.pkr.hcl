@@ -58,16 +58,22 @@ variable insecure_connection {
 
 variable iso_filename_vmware_tools {
   type = string
-  description = "The file name of the VMware Tools for Windows ISO image installation media. ISOs are expected to be uploaded to the datastore in a directory/folder named 'ISO'."
+  description = "The file name of the VMware Tools for Windows ISO image installation media."
   # https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso
   default = "VMware-tools-windows-11.1.0-16036546.iso"
 }
 
 variable iso_filename_windows {
   type = string
-  description = "The file name of the guest operating system ISO image installation media. ISOs are expected to be uploaded to the datastore in a directory/folder named 'ISO'."
+  description = "The file name of the guest operating system ISO image installation media."
   # https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
   default = "17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+}
+
+variable iso_filepath {
+  type = string
+  description = "The file path within your datastore to your ISO image installation media."
+  default = "/ISOs"
 }
 
 variable network {
@@ -124,8 +130,8 @@ variable winrm_username {
 
 locals {
   answer_file_path = "./http/windows-server/${var.answer_file_subdir}/autounattend.xml"
-  iso_path_vmware_tools = "[${var.datastore}] /ISO/${var.iso_filename_vmware_tools}"
-  iso_path_windows = "[${var.datastore}] /ISO/${var.iso_filename_windows}"
+  iso_path_vmware_tools = "[${var.datastore}] ${var.iso_filepath}/${var.iso_filename_vmware_tools}"
+  iso_path_windows = "[${var.datastore}] ${var.iso_filepath}/${var.iso_filename_windows}"
   vm_name = "${var.vm_name}-${formatdate("YYYYMMDD'T'hhmmss", timestamp())}Z"
 }
 

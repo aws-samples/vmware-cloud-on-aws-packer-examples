@@ -76,9 +76,15 @@ variable insecure_connection {
 
 variable iso_filename {
   type = string
-  description = "The file name of the guest operating system ISO image installation media. ISOs are expected to be uploaded to the datastore in a directory/folder named 'ISO'."
+  description = "The file name of the guest operating system ISO image installation media."
   # http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso
   default = "ubuntu-20.04.1-legacy-server-amd64.iso"
+}
+
+variable iso_filepath {
+  type = string
+  description = "The file path within your datastore to your ISO image installation media."
+  default = "/ISOs"
 }
 
 variable network {
@@ -134,7 +140,7 @@ variable vm_version {
 }
 
 locals {
-  iso_path = "[${var.datastore}] /ISO/${var.iso_filename}"
+  iso_path = "[${var.datastore}] ${var.iso_filepath}/${var.iso_filename}"
   vm_name = "${var.vm_name}-${formatdate("YYYYMMDD'T'hhmmss", timestamp())}Z"
 }
 
