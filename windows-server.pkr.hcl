@@ -59,8 +59,8 @@ variable insecure_connection {
 variable iso_filename_vmware_tools {
   type = string
   description = "The file name of the VMware Tools for Windows ISO image installation media."
-  # https://packages.vmware.com/tools/esx/7.0p01/windows/VMware-tools-windows-11.1.0-16036546.iso
-  default = "VMware-tools-windows-11.1.0-16036546.iso"
+  # https://packages.vmware.com/tools/esx/7.0p02/windows/VMware-tools-windows-11.1.5-16724464.iso
+  default = "VMware-tools-windows-11.1.5-16724464.iso"
 }
 
 variable iso_filename_windows {
