@@ -64,8 +64,8 @@ variable insecure_connection {
 variable iso_filename {
   type = string
   description = "The file name of the guest operating system ISO image installation media."
-  # https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
-  default = "ubuntu-20.04.1-live-server-amd64.iso"
+  # https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso
+  default = "ubuntu-20.04.2-live-server-amd64.iso"
 }
 
 variable iso_filepath {

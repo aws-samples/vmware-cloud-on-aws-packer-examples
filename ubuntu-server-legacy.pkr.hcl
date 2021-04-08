@@ -77,8 +77,8 @@ variable insecure_connection {
 variable iso_filename {
   type = string
   description = "The file name of the guest operating system ISO image installation media."
-  # http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso
-  default = "ubuntu-20.04.1-legacy-server-amd64.iso"
+  # https://cdimage.ubuntu.com/ubuntu-server/focal/daily/current/focal-legacy-server-amd64.iso
+  default = "focal-legacy-server-amd64.iso"
 }
 
 variable iso_filepath {
